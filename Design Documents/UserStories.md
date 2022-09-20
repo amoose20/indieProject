@@ -1,0 +1,11 @@
+As an registered user, I want to log in so that I can quickly view the bettings odds on the events I am most interested in.
+
+As any user, I want to create an account so that I can save my favorite teams and leagues.
+
+As any user, I want to be able to toggle the odds displayd filtered by each league.
+
+As an registered user, I want to be able to save my preferred sportsbooks and have those odds displayed more prominently.
+
+As any user, I want to be able to select a team and view their upcoming schedules.
+
+As an registered user, I want to be able to edit my account and profile information. 
