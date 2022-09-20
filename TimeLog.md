@@ -1,6 +1,13 @@
 /9# Time Log
 
-| Date    | Task                                                                             | Hours | Notes |
-|---------|----------------------------------------------------------------------------------|-------|-------|
-| 9/6/22  | Completed setup of project repository                                            | 2     |       |
-| 9/19/22 | Put tasks in here | x | x |
+| Date    | Task                                                                                          | Hours | Notes |
+|---------|-----------------------------------------------------------------------------------------------|-------|-------|
+| 9/6/22  | Completed setup of project repository                                                         | 2     |       |
+| 9/7/22  | Researched available API's using the rapidAPI website and found one that was interesting      | 1     | x     |
+| 9/8/22  | Selected project topic, completed 'elevator pitch' in the slack channel                       | 1     | x     |
+| 9/12/22 | Worked on a more developed problem statement                                                  | 1     | x     | 
+| 9/14/22 | Created some user stories, mostly identifying stories aligned with the Minimum Viable Product | 1     | x     |
+| 9/19/22 | Created design documents directory                                                            | .5    | x     |
+| 9/19/22 | Added user stories and problem statement to project repo                                      | 1     | x     |
+| 9/19/22 | Beginning work on wireframe and application flow                                              | 1     | x     |
+
