@@ -14,7 +14,7 @@
 
 ### Week 4
 - [ ] Create database for storing user information
-- [ ] Create directory within main to hold the controller-entity-persistance directories
+- [ ] Create directory within main to hold the controller-entity-persistence directories
 
 ### Week 5
 - [ ] Create user entity java class
