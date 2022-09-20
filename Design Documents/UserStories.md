@@ -1,3 +1,7 @@
+# User Stories
+
+### *indicates MVP user stories 
+
 *As an registered user, I want to log in so that I can quickly view the bettings odds on the events I am most interested in.
 
 *As any user, I want to create an account so that I can save my favorite teams and leagues.
