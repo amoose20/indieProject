@@ -10,4 +10,5 @@
 | 9/19/22 | Created design documents directory                                                            | .5    | x     |
 | 9/19/22 | Added user stories and problem statement to project repo                                      | 1     | x     |
 | 9/19/22 | Beginning work on wireframe and application flow                                              | 1     | x     |
+| 9/29/22 | Added Hibernate, user database, userDAO class, unit tests | 2 | ToDo: Create test database |
 
