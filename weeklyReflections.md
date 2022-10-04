@@ -15,3 +15,13 @@ Adding all design documents and materials I have been working on to my project r
 I was able to add a few more user stories and start making wireframes for my application screens. Used figma to develop wireframes of the screens I hope to design. For the upcoming week, I hope to start adding a user Class and begin building the database. After I complete this week's exercise and class material, including DAO and Hibernate, I hope to integrate it into my project.
 
 Time spent: 3 hours
+
+Week 4/Week 5 - I was able to create the User class and implement Hibernate. UserDao has been created and the methods contained with it are all tested in the UserDaoTests.
+
+It took me some time to fully understand and complete the exercises for Weeks 4 and 5. After completing Week 5's materials, I feel I have a much better understanding of 
+
+Hibernate and using DAO's. I have implemented the logic from Weeks 4/5 into my indieProject User class. 
+
+I have not created a Set<> for my User or a test database yet. These two items are next on my agenda.
+
+Time spent: 2 hours
