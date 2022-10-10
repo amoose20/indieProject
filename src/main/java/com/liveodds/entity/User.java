@@ -141,6 +141,25 @@ public class User {
     }
 
 
+    /**
+     * Add teams.
+     *
+     * @param newTeam the new team
+     */
+    public void addTeams(Team newTeam) {
+        teams.add(newTeam);
+        newTeam.setUser(this);
+    }
+
+    /**
+     * Remove teams.
+     *
+     * @param newTeam the new team
+     */
+    public void removeTeams(Team newTeam) {
+        teams.remove(newTeam);
+        newTeam.setUser(null);
+    }
 
     @Override
     public boolean equals(Object o) {

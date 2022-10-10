@@ -25,7 +25,7 @@ class UserDaoTest {
     @Test
     void getAllUsersSuccess() {
         List<User> users = dao.getAllUsers();
-        assertEquals(1, users.size());
+        assertEquals(2, users.size());
     }
 
     @Test
@@ -47,7 +47,7 @@ class UserDaoTest {
 
     @Test
     void insert() {
-        User user = new User("Test", "User", 30);
+        User user = new User("UserDao", "Test", 30);
         int id = dao.insert(user);
         assertNotEquals(0,id);
         User insertedUser = dao.getById(id);
