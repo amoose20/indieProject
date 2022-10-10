@@ -63,7 +63,7 @@ public class TeamDaoTest {
      */
     @Test
     void updateSuccess() {
-        String newTeamName = "Chicago Bulls";
+        String newTeamName = "New York Knicks";
         Team teamToUpdate = dao.getById(2);
         teamToUpdate.setName(newTeamName);
         dao.saveOrUpdate(teamToUpdate);
@@ -75,8 +75,8 @@ public class TeamDaoTest {
      */
     @Test
     void deleteSuccess() {
-        dao.delete(dao.getById(3));
-        assertNull(dao.getById(3));
+        dao.delete(dao.getById(1));
+        assertNull(dao.getById(1));
     }
 
     /**
@@ -93,7 +93,7 @@ public class TeamDaoTest {
      */
     @Test
     void getByPropertyEqualSuccess() {
-        List<Team> teams = dao.getByPropertyEqual("publicationYear", "2005");
+        List<Team> teams = dao.getByPropertyEqual("name", "Chicago Bulls");
         assertEquals(1, teams.size());
         assertEquals(1, teams.get(0).getId());
     }
@@ -103,7 +103,7 @@ public class TeamDaoTest {
      */
     @Test
     void getByPropertyLikeSuccess() {
-        List<Team> teams = dao.getByPropertyLike("isbn", "9");
-        assertEquals(3, teams.size());
+        List<Team> teams = dao.getByPropertyLike("name", "New York");
+        assertEquals(1, teams.size());
     }
 }

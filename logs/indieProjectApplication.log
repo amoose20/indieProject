@@ -1,0 +1,12 @@
+[DEBUG] 2022-10-10 13:23:19.666 [main] TeamDao - The list of Teams [com.liveodds.entity.Team@663ef1ee, com.liveodds.entity.Team@c29890ef]
+[DEBUG] 2022-10-10 13:23:19.698 [main] TeamDao - The list of Teams [com.liveodds.entity.Team@663ef1ee, com.liveodds.entity.Team@c29890ef]
+[DEBUG] 2022-10-10 13:23:19.795 [main] TeamDao - Searching for team with name = Chicago Cubs
+[DEBUG] 2022-10-10 13:23:19.956 [main] TeamDao - Searching for team with name = New York
+[DEBUG] 2022-10-10 13:24:41.602 [main] TeamDao - The list of Teams [com.liveodds.entity.Team@663ef1ee, com.liveodds.entity.Team@c29890ef]
+[DEBUG] 2022-10-10 13:24:41.646 [main] TeamDao - The list of Teams [com.liveodds.entity.Team@663ef1ee, com.liveodds.entity.Team@c29890ef]
+[DEBUG] 2022-10-10 13:24:41.730 [main] TeamDao - Searching for team with name = Chicago Cubs
+[DEBUG] 2022-10-10 13:24:41.880 [main] TeamDao - Searching for team with name = New York
+[DEBUG] 2022-10-10 13:26:16.022 [main] TeamDao - The list of Teams [com.liveodds.entity.Team@663ef1ee, com.liveodds.entity.Team@c29890ef, com.liveodds.entity.Team@b5a319b4]
+[DEBUG] 2022-10-10 13:26:16.064 [main] TeamDao - The list of Teams [com.liveodds.entity.Team@663ef1ee, com.liveodds.entity.Team@c29890ef, com.liveodds.entity.Team@b5a319b4]
+[DEBUG] 2022-10-10 13:26:16.168 [main] TeamDao - Searching for team with name = Chicago Bulls
+[DEBUG] 2022-10-10 13:26:16.292 [main] TeamDao - Searching for team with name = New York
