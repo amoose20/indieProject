@@ -10,3 +10,8 @@
 [DEBUG] 2022-10-10 13:26:16.064 [main] TeamDao - The list of Teams [com.liveodds.entity.Team@663ef1ee, com.liveodds.entity.Team@c29890ef, com.liveodds.entity.Team@b5a319b4]
 [DEBUG] 2022-10-10 13:26:16.168 [main] TeamDao - Searching for team with name = Chicago Bulls
 [DEBUG] 2022-10-10 13:26:16.292 [main] TeamDao - Searching for team with name = New York
+[ERROR] 2022-10-10 15:43:43.574 [main] Database - java.sql.SQLException: Column count doesn't match value count at row 1
+[ERROR] 2022-10-10 15:43:48.013 [main] Database - java.sql.SQLException: Column count doesn't match value count at row 1
+[ERROR] 2022-10-10 15:43:48.225 [main] Database - java.sql.SQLException: Column count doesn't match value count at row 1
+[ERROR] 2022-10-10 15:43:48.421 [main] Database - java.sql.SQLException: Column count doesn't match value count at row 1
+[ERROR] 2022-10-10 15:43:48.532 [main] Database - java.sql.SQLException: Column count doesn't match value count at row 1

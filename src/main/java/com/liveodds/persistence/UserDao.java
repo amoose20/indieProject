@@ -10,10 +10,21 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.util.List;
 
+/**
+ * The type User dao.
+ */
 public class UserDao {
 
+    /**
+     * The Session factory.
+     */
     SessionFactory sessionFactory = SessionFactoryProvider.getSessionFactory();
 
+    /**
+     * Gets all users.
+     *
+     * @return the all users
+     */
     public List<User> getAllUsers() {
         Session session = sessionFactory.openSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
@@ -25,6 +36,12 @@ public class UserDao {
         return users;
     }
 
+    /**
+     * Gets by id.
+     *
+     * @param id the id
+     * @return the by id
+     */
     public User getById(int id) {
         Session session = sessionFactory.openSession();
         User user = session.get(User.class, id);
@@ -35,7 +52,8 @@ public class UserDao {
 
     /**
      * update user
-     * @param user  User to be inserted or updated
+     *
+     * @param user User to be inserted or updated
      */
     public void saveOrUpdate(User user) {
         Session session = sessionFactory.openSession();
@@ -47,7 +65,8 @@ public class UserDao {
 
     /**
      * update user
-     * @param user  User to be inserted or updated
+     *
+     * @param user User to be inserted or updated
      * @return id of the inserted user
      */
     public int insert(User user) {
@@ -62,6 +81,7 @@ public class UserDao {
 
     /**
      * Delete a user
+     *
      * @param user User to be deleted
      */
     public void delete(User user) {
