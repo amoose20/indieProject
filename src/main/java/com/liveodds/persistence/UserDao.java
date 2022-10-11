@@ -1,12 +1,15 @@
 package com.liveodds.persistence;
 
 import com.liveodds.entity.User;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Expression;
 import javax.persistence.criteria.Root;
 import java.util.List;
 
@@ -14,6 +17,8 @@ import java.util.List;
  * The type User dao.
  */
 public class UserDao {
+
+    private final Logger logger = LogManager.getLogger(this.getClass());
 
     /**
      * The Session factory.
@@ -90,6 +95,54 @@ public class UserDao {
         session.delete(user);
         transaction.commit();
         session.close();
+    }
+
+    /**
+     * Get user by property (exact match)
+     * sample usage: getByPropertyEqual("lastName", "Curry")
+     *
+     * @param propertyName entity property to search by
+     * @param value value of the property to search for
+     * @return list of users meeting the criteria search
+     */
+    public List<User> getByPropertyEqual(String propertyName, String value) {
+        Session session = sessionFactory.openSession();
+
+        logger.debug("Searching for user with " + propertyName + " = " + value);
+
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<User> query = builder.createQuery( User.class );
+        Root<User> root = query.from( User.class );
+        query.select(root).where(builder.equal(root.get(propertyName), value));
+        List<User> users = session.createQuery( query ).getResultList();
+
+        session.close();
+        return users;
+    }
+
+    /**
+     * Get user by property (like)
+     * sample usage: getByPropertyLike("lastName", "C")
+     *
+     * @param propertyName entity property to search by
+     * @param value value of the property to search for
+     * @return list of users meeting the criteria search
+     */
+    public List<User> getByPropertyLike(String propertyName, String value) {
+        Session session = sessionFactory.openSession();
+
+        logger.debug("Searching for user with {} = {}",  propertyName, value);
+
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<User> query = builder.createQuery( User.class );
+        Root<User> root = query.from( User.class );
+        Expression<String> propertyPath = root.get(propertyName);
+
+        query.where(builder.like(propertyPath, "%" + value + "%"));
+
+        List<User> users = session.createQuery( query ).getResultList();
+        session.close();
+        return users;
     }
 
 }

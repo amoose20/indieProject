@@ -25,3 +25,19 @@ Hibernate and using DAO's. I have implemented the logic from Weeks 4/5 into my i
 I have not created a Set<> for my User or a test database yet. These two items are next on my agenda.
 
 Time spent: 2 hours
+
+Week 6 - This week I focused on the peer review. It was really helpful to have someone else review my work done so far 
+
+and discuss what the next steps should be. 
+
+Time spent: 2 hours
+
+Week 7 - Added a Team entity, Dao class, and unit testing. Updated the database accordingly. The idea behind the Team
+
+Class is so users are able to save their favorite teams so their wagering odds are displayed more prominently. 
+
+The hibernate associations have been added to the User and Team classes. 
+
+Both the User and Team classes have DAO classes and are fully unit tested.
+
+Time spent: 3 hours

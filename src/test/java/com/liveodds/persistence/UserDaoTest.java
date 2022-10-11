@@ -59,4 +59,23 @@ class UserDaoTest {
         dao.delete(dao.getById(1));
         assertNull(dao.getById(1));
     }
+
+    /**
+     * Verify successful get by property (equal match)
+     */
+    @Test
+    void getByPropertyEqualSuccess() {
+        List<User> users = dao.getByPropertyEqual("lastName", "Mussey");
+        assertEquals(1, users.size());
+        assertEquals(1, users.get(0).getId());
+    }
+
+    /**
+     * Verify successful get by property (like match)
+     */
+    @Test
+    void getByPropertyLikeSuccess() {
+        List<User> users = dao.getByPropertyLike("firstName", "Test");
+        assertEquals(1, users.size());
+    }
 }
