@@ -4,11 +4,11 @@
         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
-        <property name="connection.url">jdbc:mysql://localhost:3306/live_odds</property>
+        <property name="connection.url">jdbc:mysql://awseb-e-wur9jbs5r3-stack-awsebrdsdatabase-sposzlkef42n.cqagpzk4cv1a.us-east-2.rds.amazonaws.com:3306/live_odds</property>
         <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
 
-        <property name="connection.username">root</property>
-        <property name="connection.password">student</property>
+        <property name="connection.username">student</property>
+        <property name="connection.password">matcstudent</property>
 
         <property name="hibernate.c3p0.min_size">5</property>
         <property name="hibernate.c3p0.max_size">20</property>
