@@ -12,9 +12,9 @@
         <tbody>
         <c:forEach var="user" items="${users}">
             <tr>
-                <td>${user.FirstName} ${user.LastName}</td>
+                <td>${user.firstName} ${user.lastName}</td>
                 <td>
-                <c:forEach var="team" items="${user.team}">
+                <c:forEach var="team" items="${user.teams}">
                     ${team.name}<br/>
                 </c:forEach>
                 </td>
