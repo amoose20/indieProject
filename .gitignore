@@ -50,3 +50,6 @@ fabric.properties
 
 #cognito.properties file
 resources/cognito.properties
+
+#key file
+src/main/.ebextensions/https-instance.config
