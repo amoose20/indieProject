@@ -49,7 +49,7 @@ crashlytics-build.properties
 fabric.properties
 
 #cognito.properties file
-resources/cognito.properties
+src/main/resources/cognito.properties
 
 #key file
 src/main/.ebextensions/https-instance.config
