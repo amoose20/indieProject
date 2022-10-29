@@ -13,5 +13,7 @@
 | 9/29/22  | Added Hibernate, user database, userDAO class, unit tests                                                                 | 2     | ToDo: Create test database |
 | 10/4/22  | Added additional tests to the UserDaoTest so all methods in the UserDao are tested. Added .equals function for testing    | 1     | x                          |
 | 10/10/22 | Added Team and TeamDao classes. Updated database with Team table, renamed database to a better name. TeamDao fully tested | 3     | x                          |
+| 10/17/22 | Added API functionality, successfully ran tests for the API response. App has been deployed to Beanstalk.                 | 3     | x                          |
+| 10/24/22 | Added cognito classes, created AWS user pool                                                                              | 2     | x                          |
 
 

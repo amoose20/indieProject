@@ -4,7 +4,7 @@
         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
-        <property name="connection.url">jdbc:mysql://awseb-e-wur9jbs5r3-stack-awsebrdsdatabase-sposzlkef42n.cqagpzk4cv1a.us-east-2.rds.amazonaws.com:3306/live_odds</property>
+        <property name="connection.url">jdbc:mysql://awseb-e-qrtk8smmbq-stack-awsebrdsdatabase-yxkq7nkzrfx9.cqagpzk4cv1a.us-east-2.rds.amazonaws.com:3306/live_odds</property>
         <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
 
         <property name="connection.username">student</property>
