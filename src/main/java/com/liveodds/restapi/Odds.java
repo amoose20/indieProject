@@ -1,4 +1,4 @@
-package com.liveodds.entity;
+package com.liveodds.restapi;
 
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;

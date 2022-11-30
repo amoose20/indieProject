@@ -1,9 +1,8 @@
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.liveodds.entity.Sports;
+import com.liveodds.restapi.Sports;
 import org.junit.Test;
 import javax.ws.rs.client.*;
 import javax.ws.rs.core.MediaType;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
