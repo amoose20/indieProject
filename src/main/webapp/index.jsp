@@ -19,5 +19,21 @@
             <h3>Welcome ${userName}</h3>
         </c:otherwise>
     </c:choose>
+    <div class="container-fluid">
+        <h2>Home teams tonight </h2>
+        <table class="table table-striped">
+            <thead class="thead-light">
+            <th>Home teams</th>
+            </thead>
+            <tbody>
+            <c:forEach var="team" items="${basketballHomeTeams}">
+                <tr>
+                    <td>${team}</td>
+                </tr>
+            </c:forEach>
+            </tbody>
+        </table>
+
+    </div>
 </body>
 </html>
