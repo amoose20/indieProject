@@ -11,10 +11,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 @WebServlet(
-        urlPatterns = {"/teams"}
+        urlPatterns = {"/nba"}
 )
 
 public class BasketballOdds extends HttpServlet {
@@ -22,13 +23,10 @@ public class BasketballOdds extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         OddsApiDao oddsDao = new OddsApiDao();
-        ArrayList<String> homeTeams = new ArrayList<String>();
+
         try {
-            Odds[] oddsList = oddsDao.build();
-            for (int i = 0; i < oddsList.length; i++) {
-                homeTeams.add(oddsList[i].getHomeTeam());
-            }
-            req.setAttribute("basketballHomeTeams", homeTeams);
+            Odds[] oddsList = oddsDao.build("basketball_nba");
+            req.setAttribute("nbaGameDetails", oddsList);
 
         } catch (Exception e) {
             throw new RuntimeException(e);

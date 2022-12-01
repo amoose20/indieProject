@@ -19,7 +19,7 @@ public class OddsApiDaoTest {
 
     @Test
     void getHomeTeam() throws Exception {
-        Odds[] odds = oddsDao.build();
+        Odds[] odds = oddsDao.build("basketball");
         String homeTeam = odds[1].getHomeTeam();
         assertNotNull(odds);
         assertEquals("a string", homeTeam);

@@ -11,10 +11,10 @@ import javax.ws.rs.core.MediaType;
 
 public class OddsApiDao {
 
-    public Odds[] build() throws Exception {
+    public Odds[] build(String sport) throws Exception {
         Client client = ClientBuilder.newClient();
         WebTarget target =
-                client.target("https://api.the-odds-api.com/v4/sports/basketball/odds/?apiKey=8e2bac2b3afc388d96abd8059f8cacb0&regions=us&oddsFormat=american");
+                client.target("https://api.the-odds-api.com/v4/sports/" + sport + "/odds/?apiKey=8e2bac2b3afc388d96abd8059f8cacb0&regions=us&oddsFormat=american");
         String response = target.request(MediaType.APPLICATION_JSON).get(String.class);
 
         ObjectMapper mapper = new ObjectMapper();
