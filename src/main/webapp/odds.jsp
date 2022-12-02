@@ -21,14 +21,22 @@
       <th>Home Team</th>
       <th>Away Team</th>
       <th>Start Time</th>
+      <th>Book</th>
+      <th>Price</th>
       </thead>
       <tbody>
-      <c:forEach var="x" items="${nbaGameDetails}">
-        <tr>
-          <td>${x.homeTeam}</td>
-          <td>${x.awayTeam}</td>
-          <td>${x.commenceTime}</td>
-        </tr>
+      <c:forEach var="a" items="${nbaGameDetails}">
+        <c:forEach var="b" items="${nbaGameDetails.bookmakers}">
+          <c:forEach var="c" items="${nbaGameDetails.bookmakers.markets.outcomes}">
+            <tr>
+              <td>${a.homeTeam}</td>
+              <td>${a.awayTeam}</td>
+              <td>${a.commenceTime}</td>
+              <td>${b.title}</td>
+              <td>${c.price}</td>
+            </tr>
+          </c:forEach>
+        </c:forEach>
       </c:forEach>
       </tbody>
     </table>
