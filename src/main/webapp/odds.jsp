@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="head.jsp"%>
 <%@include file="taglib.jsp"%>
+
 <html>
 <head>
     <title>Odds</title>
@@ -21,22 +22,14 @@
       <th>Home Team</th>
       <th>Away Team</th>
       <th>Start Time</th>
-      <th>Book</th>
-      <th>Price</th>
       </thead>
       <tbody>
       <c:forEach var="a" items="${nbaGameDetails}">
-        <c:forEach var="b" items="${nbaGameDetails.bookmakers}">
-          <c:forEach var="c" items="${nbaGameDetails.bookmakers.markets.outcomes}">
-            <tr>
-              <td>${a.homeTeam}</td>
-              <td>${a.awayTeam}</td>
-              <td>${a.commenceTime}</td>
-              <td>${b.title}</td>
-              <td>${c.price}</td>
-            </tr>
-          </c:forEach>
-        </c:forEach>
+        <tr>
+          <td>${a.homeTeam}</td>
+          <td>${a.awayTeam}</td>
+          <td>${a.commenceTime}</td>
+        </tr>
       </c:forEach>
       </tbody>
     </table>
@@ -51,11 +44,11 @@
       <th>Start Time</th>
       </thead>
       <tbody>
-      <c:forEach var="x" items="${nflGameDetails}">
+      <c:forEach var="a" items="${nflGameDetails}">
         <tr>
-          <td>${x.homeTeam}</td>
-          <td>${x.awayTeam}</td>
-          <td>${x.commenceTime}</td>
+          <td>${a.homeTeam}</td>
+          <td>${a.awayTeam}</td>
+          <td>${a.commenceTime}</td>
         </tr>
       </c:forEach>
       </tbody>
@@ -71,11 +64,11 @@
       <th>Start Time</th>
       </thead>
       <tbody>
-      <c:forEach var="x" items="${nhlGameDetails}">
+      <c:forEach var="a" items="${nhlGameDetails}">
         <tr>
-          <td>${x.homeTeam}</td>
-          <td>${x.awayTeam}</td>
-          <td>${x.commenceTime}</td>
+          <td>${a.homeTeam}</td>
+          <td>${a.awayTeam}</td>
+          <td>${a.commenceTime}</td>
         </tr>
       </c:forEach>
       </tbody>
