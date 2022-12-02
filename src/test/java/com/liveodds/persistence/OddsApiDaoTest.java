@@ -1,5 +1,7 @@
 package com.liveodds.persistence;
 
+import com.liveodds.restapi.BookmakersItem;
+import com.liveodds.restapi.MarketsItem;
 import com.liveodds.restapi.Odds;
 import com.liveodds.util.Database;
 import org.junit.jupiter.api.BeforeEach;
@@ -30,8 +32,16 @@ public class OddsApiDaoTest {
     void getBookMakers() throws Exception {
         Odds[] odds = oddsDao.build("basketball");
         List bookMakers = odds[1].getBookmakers();
-        assertNotNull(odds);
         assertEquals("a string", bookMakers);
+
+    }
+
+    @Test
+    void getMarkets() throws Exception {
+        Odds[] odds = oddsDao.build("basketball");
+        List<BookmakersItem> bookMakers = odds[1].getBookmakers();
+        List<MarketsItem> markets = bookMakers.get(1).getMarkets();
+        assertEquals("a string", markets);
 
     }
 

@@ -15,7 +15,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 @WebServlet(
-        urlPatterns = {"/nba"}
+        urlPatterns = {"/odds"}
 )
 
 public class BasketballOdds extends HttpServlet {
@@ -25,14 +25,20 @@ public class BasketballOdds extends HttpServlet {
         OddsApiDao oddsDao = new OddsApiDao();
 
         try {
-            Odds[] oddsList = oddsDao.build("basketball_nba");
-            req.setAttribute("nbaGameDetails", oddsList);
+            Odds[] nba = oddsDao.build("basketball_nba");
+            req.setAttribute("nbaGameDetails", nba);
+
+            Odds[] nfl = oddsDao.build("americanfootball_nfl");
+            req.setAttribute("nflGameDetails", nfl);
+
+            Odds[] nhl = oddsDao.build("icehockey_nhl");
+            req.setAttribute("nhlGameDetails", nhl);
 
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
 
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/index.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/odds.jsp");
         dispatcher.forward(req, resp);
     }
 }
