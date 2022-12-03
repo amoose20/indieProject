@@ -22,7 +22,8 @@
       <th>Home Team</th>
       <th>Away Team</th>
       <th>Start Time</th>
-      <th>Bookmakers</th>
+      <th>Home Team MoneyLine</th>
+      <th>Away Team MoneyLine</th>
       </thead>
       <tbody>
       <c:forEach var="a" items="${nbaGameDetails}">
@@ -30,7 +31,9 @@
           <td>${a.homeTeam}</td>
           <td>${a.awayTeam}</td>
           <td>${a.commenceTime}</td>
-          <td>${a.bookmakers[0].title}</td>
+          <td>${a.bookmakers[0].markets[0].outcomes[0].price}</td>
+          <td>${a.bookmakers[0].markets[0].outcomes[1].price}</td>
+
         </tr>
       </c:forEach>
       </tbody>
