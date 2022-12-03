@@ -25,11 +25,11 @@ public class BuildOdds extends HttpServlet {
             Odds[] nba = oddsDao.build("basketball_nba");
             req.setAttribute("nbaGameDetails", nba);
 
-            Odds[] nfl = oddsDao.build("americanfootball_nfl");
+            /*Odds[] nfl = oddsDao.build("americanfootball_nfl");
             req.setAttribute("nflGameDetails", nfl);
 
             Odds[] nhl = oddsDao.build("icehockey_nhl");
-            req.setAttribute("nhlGameDetails", nhl);
+            req.setAttribute("nhlGameDetails", nhl);*/
 
         } catch (Exception e) {
             throw new RuntimeException(e);
