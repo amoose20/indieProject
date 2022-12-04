@@ -20,31 +20,31 @@
             <form method="post" action="FavoriteTeams">
                 <div class="col">
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="bostonCeltics" id="celtics">
-                        <label class="form-check-label" for="nets">
+                        <input class="form-check-input" type="checkbox" value="bostonCeltics" id="celtics" name="teams">
+                        <label class="form-check-label" for="celtics">
                             Boston Celtics
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="brooklynNets" id="nets">
+                        <input class="form-check-input" type="checkbox" value="brooklynNets" id="nets" name="teams">
                         <label class="form-check-label" for="nets">
                             Brooklyn Nets
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="newYorkKnicks" id="knicks">
+                        <input class="form-check-input" type="checkbox" value="newYorkKnicks" id="knicks" name="teams">
                         <label class="form-check-label" for="knicks">
                             New York Knicks
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="philadelphiaSixers" id="seventySixers">
+                        <input class="form-check-input" type="checkbox" value="philadelphiaSixers" id="seventySixers" name="teams">
                         <label class="form-check-label" for="seventySixers">
                             Philadelphia 76ers
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="torontoRaptors" id="raptors">
+                        <input class="form-check-input" type="checkbox" value="torontoRaptors" id="raptors" name="teams">
                         <label class="form-check-label" for="raptors">
                             Toronto Raptors
                         </label>
@@ -52,31 +52,31 @@
                 </div>
                 <div class="col">
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="chicagoBulls" id="bulls">
+                        <input class="form-check-input" type="checkbox" value="chicagoBulls" id="bulls" name="teams">
                         <label class="form-check-label" for="bulls">
                             Chicago Bulls
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="clevelandCavaliers" id="cavaliers">
+                        <input class="form-check-input" type="checkbox" value="clevelandCavaliers" id="cavaliers" name="teams">
                         <label class="form-check-label" for="cavaliers">
                             Cleveland Cavaliers
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="detroitPistons" id="pistons">
+                        <input class="form-check-input" type="checkbox" value="detroitPistons" id="pistons" name="teams">
                         <label class="form-check-label" for="pistons">
                             Detroit Pistons
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="indianaPacers" id="pacers">
+                        <input class="form-check-input" type="checkbox" value="indianaPacers" id="pacers" name="teams">
                         <label class="form-check-label" for="pacers">
                             Indiana Pacers
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="milwaukeeBucks" id="bucks">
+                        <input class="form-check-input" type="checkbox" value="milwaukeeBucks" id="bucks" name="teams">
                         <label class="form-check-label" for="bucks">
                             Milwaukee Bucks
                         </label>
