@@ -19,21 +19,16 @@
     <h2>Upcoming NBA games</h2>
     <table class="table table-striped">
       <thead class="thead-light">
-      <th>Home Team</th>
-      <th>Away Team</th>
       <th>Start Time</th>
-      <th>Home Team MoneyLine</th>
-      <th>Away Team MoneyLine</th>
+      <th>Team 1 (price)</th>
+      <th>Team 2 (price)</th>
       </thead>
       <tbody>
       <c:forEach var="a" items="${nbaGameDetails}">
         <tr>
-          <td>${a.homeTeam}</td>
-          <td>${a.awayTeam}</td>
           <td>${a.commenceTime}</td>
-          <td>${a.bookmakers[0].markets[0].outcomes[0].price}</td>
-          <td>${a.bookmakers[0].markets[0].outcomes[1].price}</td>
-
+          <td>${a.bookmakers[0].markets[0].outcomes[0].name} (${a.bookmakers[0].markets[0].outcomes[0].price})</td>
+          <td>${a.bookmakers[0].markets[0].outcomes[1].name} (${a.bookmakers[0].markets[0].outcomes[1].price})</td>
         </tr>
       </c:forEach>
       </tbody>
