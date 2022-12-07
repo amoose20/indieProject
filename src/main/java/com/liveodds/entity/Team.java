@@ -3,25 +3,26 @@ package com.liveodds.entity;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * The type Team.
  */
-@Entity(name = "Team")
-@Table(name = "team") // case sensitive!
+@Entity
+@Table(name = "team", catalog = "live_odds") // case sensitive!
 public class Team {
 
     @Column (name = "name")
     private String name;
-
-    @ManyToOne
-    private User user;
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "teams")
+    private Set<User> users = new HashSet<User>(0);
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO, generator="native")
     @GenericGenerator(name = "native",strategy = "native")
-    private int id;
+    private int teamId;
 
     /**
      * Instantiates a new Team.
@@ -31,15 +32,20 @@ public class Team {
 
     /**
      * Instantiates a new Team.
+     */
+    public Team(String name) {
+        this.name = name;
+    }
+
+    /**
+     * Instantiates a new Team.
      *
      * @param name the name
-     * @param user the user
-     * @param id   the id
+     * @param users the user
      */
-    public Team(String name, User user, int id) {
+    public Team(String name, Set<User> users) {
         this.name = name;
-        this.user = user;
-        this.id = id;
+        this.users = users;
     }
 
     /**
@@ -65,17 +71,18 @@ public class Team {
      *
      * @return the user
      */
-    public User getUser() {
-        return user;
+
+    public Set<User> getUser() {
+        return this.users;
     }
 
     /**
      * Sets user.
      *
-     * @param user the user
+     * @param users the user
      */
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser(Set<User> users) {
+        this.users = users;
     }
 
     /**
@@ -84,28 +91,17 @@ public class Team {
      * @return the id
      */
     public int getId() {
-        return id;
+        return teamId;
     }
 
     /**
      * Sets id.
      *
-     * @param id the id
+     * @param teamId the id
      */
-    public void setId(int id) {
-        this.id = id;
+    public void setId(int teamId) {
+        this.teamId = teamId;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Team team = (Team) o;
-        return id == team.id && Objects.equals(name, team.name) && Objects.equals(user, team.user);
-    }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(name, user, id);
-    }
 }

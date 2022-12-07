@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -47,9 +48,7 @@ public class TeamDaoTest {
         UserDao userDao = new UserDao();
         User user = userDao.getById(1);
 
-        Team newTeam = new Team("Chicago Cubs", user, 1);
-
-        user.addTeams(newTeam);
+        Team newTeam = new Team();
 
         int id = dao.insert(newTeam);
         assertNotEquals(0,id);

@@ -1,11 +1,14 @@
 package com.liveodds.persistence;
 
+import com.liveodds.entity.Team;
 import com.liveodds.entity.User;
 import com.liveodds.util.Database;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -31,15 +34,16 @@ class UserDaoTest {
     @Test
     void getByIdSuccess() {
         User retrievedUser = dao.getById(1);
+        Set<Team> teams = new HashSet<Team>();
+        teams = retrievedUser.getTeams();
+        assertTrue(teams.contains("Chicago Bulls"));
         assertNotNull(retrievedUser);
-        assertEquals(retrievedUser, dao.getById(1));
     }
 
     @Test
     void saveOrUpdate() {
         User userToUpdate = dao.getById(2);
-        userToUpdate.setFirstName("Update");
-        userToUpdate.setLastName("Test");
+        userToUpdate.setName("UpdateTest");
         dao.saveOrUpdate(userToUpdate);
         User userAfterUpdate = dao.getById(2);
         assertEquals(userToUpdate, userAfterUpdate);
@@ -47,7 +51,7 @@ class UserDaoTest {
 
     @Test
     void insert() {
-        User user = new User("UserDao", "Test", 30);
+        User user = new User("UserDao", 34);
         int id = dao.insert(user);
         assertNotEquals(0,id);
         User insertedUser = dao.getById(id);
@@ -65,7 +69,7 @@ class UserDaoTest {
      */
     @Test
     void getByPropertyEqualSuccess() {
-        List<User> users = dao.getByPropertyEqual("lastName", "Mussey");
+        List<User> users = dao.getByPropertyEqual("name", "Austin");
         assertEquals(1, users.size());
         assertEquals(1, users.get(0).getId());
     }
@@ -75,7 +79,7 @@ class UserDaoTest {
      */
     @Test
     void getByPropertyLikeSuccess() {
-        List<User> users = dao.getByPropertyLike("firstName", "Test");
+        List<User> users = dao.getByPropertyLike("age", "30");
         assertEquals(1, users.size());
     }
 }

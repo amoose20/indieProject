@@ -11,7 +11,7 @@
         <button type="submit" name="submit" value="search" class="btn btn-primary">Search by last name</button>
         <button type="submit" name="submit" value="viewAll" class="btn btn-primary">View all</button>
     </form>
-    <a href="odds.jsp">View odds</a>
+    <a href="odds">View odds</a>
     <c:choose>
         <c:when test="${empty userName}">
             <a href = "logIn">Log in</a>

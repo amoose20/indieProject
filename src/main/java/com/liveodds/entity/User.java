@@ -10,25 +10,26 @@ import java.util.Set;
 /**
  * The type User.
  */
-@Entity(name = "User")
-@Table(name = "user")
+@Entity
+@Table(name = "user", catalog = "live_odds")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
-    private int id;
+    private int userId;
 
-    @Column(name = "FirstName")
-    private String firstName;
-
-    @Column(name = "LastName")
-    private String lastName;
+    @Column(name = "name")
+    private String name;
 
     @Column(name = "Age")
     private int age;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    private Set<Team> teams = new HashSet<>();
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "user_teams", catalog = "live_odds", joinColumns = {
+            @JoinColumn(name = "user_id", nullable = false, updatable = false) },
+            inverseJoinColumns = { @JoinColumn(name = "team_id",
+                    nullable = false, updatable = false) })
+    private Set<Team> teams = new HashSet<Team>(0);
 
 
     /**
@@ -40,14 +41,23 @@ public class User {
     /**
      * Instantiates a new User.
      *
-     * @param firstName the first name
-     * @param lastName  the last name
+     * @param name the username
      * @param age       the age
      */
-    public User(String firstName, String lastName, int age) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public User(String name, int age) {
+        this.name = name;
         this.age = age;
+    }
+    /**
+     * Instantiates a new User.
+     *
+     * @param name the username
+     * @param age       the age
+     */
+    public User(String name, int age, Set<Team> teams) {
+        this.name = name;
+        this.age = age;
+        this.teams = teams;
     }
 
     /**
@@ -56,16 +66,16 @@ public class User {
      * @return the id
      */
     public int getId() {
-        return id;
+        return userId;
     }
 
     /**
      * Sets id.
      *
-     * @param id the id
+     * @param userId the userId
      */
-    public void setId(int id) {
-        this.id = id;
+    public void setId(int userId) {
+        this.userId = userId;
     }
 
     /**
@@ -73,35 +83,17 @@ public class User {
      *
      * @return the first name
      */
-    public String getFirstName() {
-        return firstName;
+    public String getName() {
+        return name;
     }
 
     /**
      * Sets first name.
      *
-     * @param firstName the first name
+     * @param name the username
      */
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    /**
-     * Gets last name.
-     *
-     * @return the last name
-     */
-    public String getLastName() {
-        return lastName;
-    }
-
-    /**
-     * Sets last name.
-     *
-     * @param lastName the last name
-     */
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     /**
@@ -127,8 +119,9 @@ public class User {
      *
      * @return the teams
      */
+
     public Set<Team> getTeams() {
-        return teams;
+        return this.teams;
     }
 
     /**
@@ -141,36 +134,4 @@ public class User {
     }
 
 
-    /**
-     * Add teams.
-     *
-     * @param newTeam the new team
-     */
-    public void addTeams(Team newTeam) {
-        teams.add(newTeam);
-        newTeam.setUser(this);
-    }
-
-    /**
-     * Remove teams.
-     *
-     * @param newTeam the new team
-     */
-    public void removeTeams(Team newTeam) {
-        teams.remove(newTeam);
-        newTeam.setUser(null);
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return id == user.id && age == user.age && Objects.equals(firstName, user.firstName) && Objects.equals(lastName, user.lastName);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, firstName, lastName, age);
-    }
 }
