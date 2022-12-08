@@ -8,6 +8,11 @@ import java.io.IOException;
 
 public class FavoriteTeams extends HttpServlet {
 
+    /*I believe this servlet should:
+    * 1. Get selected teams from the form
+    * 2. Add the teams to the user object
+    * */
+
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         String[] favoriteTeams = req.getParameterValues("teams");

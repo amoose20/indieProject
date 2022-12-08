@@ -24,7 +24,7 @@ public class User {
     @Column(name = "Age")
     private int age;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "user_teams", catalog = "live_odds", joinColumns = {
             @JoinColumn(name = "user_id", nullable = false, updatable = false) },
             inverseJoinColumns = { @JoinColumn(name = "team_id",
@@ -132,6 +132,5 @@ public class User {
     public void setTeams(Set<Team> teams) {
         this.teams = teams;
     }
-
 
 }

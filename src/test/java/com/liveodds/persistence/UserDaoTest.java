@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -36,8 +37,9 @@ class UserDaoTest {
         User retrievedUser = dao.getById(1);
         Set<Team> teams = new HashSet<Team>();
         teams = retrievedUser.getTeams();
-        assertTrue(teams.contains("Chicago Bulls"));
-        assertNotNull(retrievedUser);
+        //Set<Team> filtered = teams.stream().filter(mc -> mc.getName().equals("Chicago Bulls")).collect(Collectors.toSet());
+        assertEquals(teams, retrievedUser.getTeams());
+        assertEquals("Austin", retrievedUser.getName());
     }
 
     @Test
@@ -51,11 +53,20 @@ class UserDaoTest {
 
     @Test
     void insert() {
-        User user = new User("UserDao", 34);
+        User user = new User("UserDaoTest", 34);
+        Team team1 = new Team("Los Angeles Lakers");
+        Team team2 = new Team("Los Angeles Clippers");
+
+        Set<Team> teams = new HashSet<Team>();
+        teams.add(team1);
+        teams.add(team2);
+        user.setTeams(teams);
+
         int id = dao.insert(user);
         assertNotEquals(0,id);
         User insertedUser = dao.getById(id);
-        assertEquals(user, insertedUser);
+        assertNotNull(insertedUser.getTeams());
+        assertEquals(user.getId(), insertedUser.getId());
     }
 
     @Test

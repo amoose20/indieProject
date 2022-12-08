@@ -16,7 +16,7 @@ public class Team {
 
     @Column (name = "name")
     private String name;
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "teams")
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "teams")
     private Set<User> users = new HashSet<User>(0);
 
     @Id
