@@ -26,7 +26,7 @@ public class SearchUser extends HttpServlet {
         UserDao userDao = new UserDao();
         if (req.getParameter("submit").equals("search")) {
             String searchTerm = req.getParameter("searchTerm");
-            req.setAttribute("users", userDao.getByPropertyEqual("lastName", searchTerm));
+            req.setAttribute("users", userDao.getByPropertyEqual("name", searchTerm));
         } else {
             req.setAttribute("users", userDao.getAllUsers());
         }

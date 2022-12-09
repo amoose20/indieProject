@@ -73,9 +73,11 @@ class UserDaoTest {
 
     @Test
     void delete() {
+        TeamDao teamDao = new TeamDao();
+        Team team = teamDao.getById(1);
         dao.delete(dao.getById(1));
         assertNull(dao.getById(1));
-        assertNull(dao.getById(1).getTeams());
+        assertNotNull(team);
     }
 
     /**
