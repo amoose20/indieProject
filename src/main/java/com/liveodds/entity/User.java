@@ -133,4 +133,26 @@ public class User {
         this.teams = teams;
     }
 
+    public void addTeams(Team newTeam) {
+        teams.add(newTeam);
+        newTeam.setUser((Set<User>) this);
+    }
+
+    public void removeTeam(Team newTeam) {
+        teams.remove(newTeam);
+        newTeam.setUser(null);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return userId == user.userId && age == user.age && Objects.equals(name, user.name) && Objects.equals(teams, user.teams);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(userId, name, age, teams);
+    }
 }

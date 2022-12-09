@@ -37,8 +37,9 @@ class UserDaoTest {
         User retrievedUser = dao.getById(1);
         Set<Team> teams = new HashSet<Team>();
         teams = retrievedUser.getTeams();
-        //Set<Team> filtered = teams.stream().filter(mc -> mc.getName().equals("Chicago Bulls")).collect(Collectors.toSet());
         assertEquals(teams, retrievedUser.getTeams());
+        assertEquals(2, teams.size());
+        assertEquals("Chicago Bulls", teams.iterator().next().getName());
         assertEquals("Austin", retrievedUser.getName());
     }
 
@@ -66,6 +67,7 @@ class UserDaoTest {
         assertNotEquals(0,id);
         User insertedUser = dao.getById(id);
         assertNotNull(insertedUser.getTeams());
+        assertEquals("Los Angeles Lakers", insertedUser.getTeams().iterator().next().getName());
         assertEquals(user.getId(), insertedUser.getId());
     }
 
@@ -73,6 +75,7 @@ class UserDaoTest {
     void delete() {
         dao.delete(dao.getById(1));
         assertNull(dao.getById(1));
+        assertNull(dao.getById(1).getTeams());
     }
 
     /**
@@ -90,7 +93,7 @@ class UserDaoTest {
      */
     @Test
     void getByPropertyLikeSuccess() {
-        List<User> users = dao.getByPropertyLike("age", "30");
+        List<User> users = dao.getByPropertyLike("name", "user");
         assertEquals(1, users.size());
     }
 }
