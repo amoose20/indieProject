@@ -8,7 +8,7 @@
     <div class="container">
         <div class="row">
             <h1>Welcome to Live Odds!</h1>
-            <h2>Use this tool to check the wagering odds on tonight's events :)</h2>
+            <h2>Use this tool to check the wagering odds on tonight's events</h2>
             <form action="searchUser" class="form-inline">
                 <div class="form-group">
                     <label for="searchTerm">Search</label>

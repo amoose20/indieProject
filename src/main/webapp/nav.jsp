@@ -18,15 +18,15 @@
                     <a class="nav-link" href = "logIn">Log in</a>
                 </c:when>
                 <c:otherwise>
+                    <li class="nav-item">
+                        <a class="nav-link" href="favoriteTeams.jsp"></a>
+                    </li>
                     <h3>Welcome ${userName}</h3>
                 </c:otherwise>
             </c:choose>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="odds">Odds</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="favoriteTeams.jsp"></a>
         </li>
     </ul>
 <body>

@@ -21,17 +21,16 @@ import java.util.Set;
 public class favoriteTeams extends HttpServlet {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
+    Set<Team> teams = new HashSet<Team>();
+
 
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         String[] favoriteTeams = req.getParameterValues("teams");
-        Set<Team> teams = new HashSet<Team>();
-        UserDao dao = new UserDao();
         for (String team : favoriteTeams) {
-            logger.info(team);
+            logger.info("Team: " + team);
             Team newTeam = new Team(team);
             teams.add(newTeam);
         }
-
     }
 }
