@@ -37,16 +37,13 @@ import java.security.PublicKey;
 import java.security.interfaces.RSAPublicKey;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.RSAPublicKeySpec;
-import java.util.Base64;
-import java.util.HashMap;
-import java.util.Properties;
+import java.util.*;
 import java.util.stream.Collectors;
 
 
 @WebServlet(
         urlPatterns = {"/auth"}
 )
-// TODO if something goes wrong it this process, route to an error page. Currently, errors are only caught and logged.
 /**
  * Inspired by: https://stackoverflow.com/questions/52144721/how-to-get-access-token-using-client-credentials-using-java-code
  */
@@ -61,6 +58,8 @@ public class Auth extends HttpServlet implements PropertiesLoader {
     String REGION;
     String POOL_ID;
     Keys jwks;
+
+    UserDao userDao = new UserDao();
 
     private final Logger logger = LogManager.getLogger(this.getClass());
 
@@ -83,6 +82,8 @@ public class Auth extends HttpServlet implements PropertiesLoader {
         String authCode = req.getParameter("code");
         String userName = null;
         HttpSession session = req.getSession();
+        List<User> users = userDao.getAllUsers();
+
 
         if (authCode == null) {
             req.getRequestDispatcher("index.jsp").forward(req, resp);
@@ -91,6 +92,17 @@ public class Auth extends HttpServlet implements PropertiesLoader {
             try {
                 TokenResponse tokenResponse = getToken(authRequest);
                 userName = validate(tokenResponse);
+                /*while (users.iterator().hasNext()) {
+                    if (users.iterator().next().getName().equals(userName)) {
+                        User userObject = (User) userDao.getByPropertyEqual("name", userName);
+                        session.setAttribute("userObject", userObject);
+                    } else {
+                        User newUser = new User(userName);
+                        userDao.insert(newUser);
+                        session.setAttribute("userObject", newUser);
+                    }
+                }*/
+
                 req.setAttribute("userName", userName);
                 session.setAttribute("userName", userName);
             } catch (IOException e) {
@@ -182,12 +194,32 @@ public class Auth extends HttpServlet implements PropertiesLoader {
 
         // TODO decide what you want to do with the info!
         // for now, I'm just returning username for display back to the browser
-        User user = new User(userName);
-        UserDao userDao = new UserDao();
-        userDao.insert(user);
 
         return userName;
     }
+
+    /*private User buildUser(String userName) {
+
+        UserDao userDao = new UserDao();
+        User user = new User();
+        List<User> existingUsers = userDao.getAllUsers();
+        ArrayList<String> userNameStrings = new ArrayList<>();
+        while (existingUsers.iterator().hasNext()) {
+            String name = existingUsers.iterator().next().getName();
+            userNameStrings.add(name);
+        }
+
+        for (String existingName : userNameStrings) {
+            if (existingName.equals(userName)) {
+                List<User> userList = userDao.getByPropertyEqual("name", userName);
+                user = userList.get(0);
+            } else {
+                user = new User(userName);
+                userDao.insert(user);
+            }
+        }
+        return user;
+    }*/
 
     /** Create the auth url and use it to build the request.
      *

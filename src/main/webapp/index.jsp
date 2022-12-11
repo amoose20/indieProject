@@ -7,7 +7,7 @@
 <body>
     <div class="container">
         <div class="row">
-            <h1>Welcome to Live Odds!</h1>
+            <h1>Welcome to Live Odds <c:choose><c:when test="${empty userName}">!</c:when><c:otherwise>${userName}!</c:otherwise></c:choose></h1>
             <h2>Use this tool to check the wagering odds on tonight's events</h2>
             <form action="searchUser" class="form-inline">
                 <div class="form-group">

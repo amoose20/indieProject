@@ -45,8 +45,8 @@ public class TeamDaoTest {
      */
     @Test
     void insertSuccess() {
-        User user1 = new User("UserDaoTest", 34);
-        User user2 = new User("UserDaoTest", 34);
+        User user1 = new User("UserDaoTest");
+        User user2 = new User("UserDaoTest");
 
         Set<User> users = new HashSet<>();
         users.add(user1);

@@ -41,3 +41,25 @@ The hibernate associations have been added to the User and Team classes.
 Both the User and Team classes have DAO classes and are fully unit tested.
 
 Time spent: 3 hours
+
+Week 8 - Created POJO's based on the response from the API. Tests added for confirming expected API response.
+
+Deployed app to beanstalk
+
+Week 9 - Completed Cognito deployment, but still not working properly. Going to work on other parts of the project
+
+before addressing Cognito deployment again.
+
+Week 10 - Updated API POJO's to ensure I can access the wagering odds of the events. Central focus was on the group
+
+project this week.
+
+Week 11 - Unfortunately not much time spent on the indie project, focused again on the group project.
+
+Week 12 - More team project work
+
+Week 13 - Restructured database to accommodate for a Many to Many relationship. Added a third joining table to 
+
+link Users and Teams. Also restructured most project packages. API POJO's are in a separate package. 
+
+Week 14 - Now displaying API response to a JSP. 

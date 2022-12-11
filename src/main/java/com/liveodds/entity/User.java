@@ -21,9 +21,6 @@ public class User {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "Age")
-    private int age;
-
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "user_teams", catalog = "live_odds", joinColumns = {
             @JoinColumn(name = "user_id", nullable = false, updatable = false) },
@@ -38,19 +35,14 @@ public class User {
     public User() {
     }
 
-    public User(String name) {
-        this.name = name;
-    }
 
     /**
      * Instantiates a new User.
      *
      * @param name the username
-     * @param age       the age
      */
-    public User(String name, int age) {
+    public User(String name) {
         this.name = name;
-        this.age = age;
     }
     /**
      * Instantiates a new User.
@@ -60,7 +52,6 @@ public class User {
      */
     public User(String name, int age, Set<Team> teams) {
         this.name = name;
-        this.age = age;
         this.teams = teams;
     }
 
@@ -83,39 +74,21 @@ public class User {
     }
 
     /**
-     * Gets first name.
+     * Gets username.
      *
-     * @return the first name
+     * @return the username
      */
     public String getName() {
         return name;
     }
 
     /**
-     * Sets first name.
+     * Sets username.
      *
      * @param name the username
      */
     public void setName(String name) {
         this.name = name;
-    }
-
-    /**
-     * Gets age.
-     *
-     * @return the age
-     */
-    public int getAge() {
-        return age;
-    }
-
-    /**
-     * Sets age.
-     *
-     * @param age the age
-     */
-    public void setAge(int age) {
-        this.age = age;
     }
 
     /**
@@ -152,11 +125,11 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return userId == user.userId && age == user.age && Objects.equals(name, user.name) && Objects.equals(teams, user.teams);
+        return userId == user.userId == Objects.equals(name, user.name) && Objects.equals(teams, user.teams);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userId, name, age, teams);
+        return Objects.hash(userId, name, teams);
     }
 }

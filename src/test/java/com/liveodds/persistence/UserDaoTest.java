@@ -54,7 +54,7 @@ class UserDaoTest {
 
     @Test
     void insert() {
-        User user = new User("UserDaoTest", 34);
+        User user = new User("UserDaoTest");
         Team team1 = new Team("Los Angeles Lakers");
         Team team2 = new Team("Los Angeles Clippers");
 
