@@ -95,20 +95,14 @@ public class Auth extends HttpServlet implements PropertiesLoader {
                 TokenResponse tokenResponse = getToken(authRequest);
                 userName = validate(tokenResponse);
                 List<User> matchingUsers = userDao.getByPropertyEqual("name", userName);
-                User user = matchingUsers.get(0);
-                session.setAttribute("userObject", user);
-
-                /*while (users.iterator().hasNext()) {
-                    if (users.iterator().next().getName().equals(userName)) {
-                        User userObject = (User) userDao.getByPropertyEqual("name", userName);
-                        session.setAttribute("userObject", userObject);
-                    } else {
-                        User newUser = new User(userName);
-                        userDao.insert(newUser);
-                        session.setAttribute("userObject", newUser);
-                    }
-                }*/
-
+                if (matchingUsers.isEmpty()) {
+                    User newUser = new User(userName);
+                    userDao.insert(newUser);
+                    session.setAttribute("userObject", newUser);
+                } else {
+                    User user = matchingUsers.get(0);
+                    session.setAttribute("userObject", user);
+                }
                 req.setAttribute("userName", userName);
                 session.setAttribute("userName", userName);
             } catch (IOException e) {
