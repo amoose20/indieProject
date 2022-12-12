@@ -19,6 +19,9 @@
             <a class="nav-link" href="odds">Odds</a>
         </li>
         <li class="nav-item">
+            <a class="nav-link" href="searchUsers.jsp">Search Users</a>
+        </li>
+        <li class="nav-item">
             <c:choose>
                 <c:when test="${empty userName}">
                     <a class="nav-link" href = "logIn">Log in</a>

@@ -26,7 +26,9 @@ public class favoriteTeams extends HttpServlet {
 
     ArrayList<String> allTeams = new ArrayList<>();
     TeamDao teamDao = new TeamDao();
-    Set<Team> teams = new HashSet<Team>();
+    Set<Team> existingTeams = new HashSet<Team>();
+    Set<Team> newTeams = new HashSet<Team>();
+
     String userName = "";
 
     Integer favoriteTeamCount = 0;
@@ -38,28 +40,22 @@ public class favoriteTeams extends HttpServlet {
         HttpSession session = req.getSession();
 
         String[] favoriteTeams = req.getParameterValues("teams");
-        userName = (String) session.getAttribute("userName");
 
-        //get list of users
-        List<User> users = userDao.getByPropertyEqual("name", userName);
+        User user = (User) session.getAttribute("userObject");
+        existingTeams = user.getTeams();
 
-        //get user object
-        User user = users.get(0);
-
-        logger.info("userName from session: " + userName);
         for (String team : favoriteTeams) {
-            logger.info("Team: " + team);
-            List<Team> teamList = teamDao.getByPropertyEqual("name", team);
-            Team newTeam = teamList.get(0);
-            teams.add(newTeam);
+            if (!existingTeams.contains(team)) {
+                Team newTeam  = teamDao.getByPropertyEqual("name", team).get(0);
+                newTeams.add(newTeam);
+            }
+
         }
-        user.setTeams(teams);
-        logger.info("userName from dao: " + user.getName());
+        user.setTeams(newTeams);
         userDao.saveOrUpdate(user);
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("/index.jsp");
         dispatcher.forward(req, resp);
-
     }
 
 }

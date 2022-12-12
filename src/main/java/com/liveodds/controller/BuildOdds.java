@@ -46,10 +46,7 @@ public class BuildOdds extends HttpServlet {
 
         userName = (String) session.getAttribute("userName");
 
-        //get list of users
-        List<User> users = userDao.getByPropertyEqual("name", userName);
-        //get user object
-        User user = users.get(0);
+        User user = (User) session.getAttribute("userObject");
 
         try {
             Odds[] nba = oddsDao.build("basketball_nba");

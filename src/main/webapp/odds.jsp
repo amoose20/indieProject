@@ -16,7 +16,7 @@
 <body>
 
   <div class="container-fluid">
-    <h2>Hey! You've got <c:out value="${favoriteTeamCount}"/> teams playing tonight</h2>
+    <h2>Hey! You have <c:out value="${favoriteTeamCount}"/> favorite teams with upcoming matches. Take a look!</h2>
     <h2>Upcoming NBA games</h2>
     <table class="table table-striped">
       <thead class="thead-light">

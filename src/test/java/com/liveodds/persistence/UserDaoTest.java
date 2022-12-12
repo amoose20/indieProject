@@ -87,6 +87,7 @@ class UserDaoTest {
     void getByPropertyEqualSuccess() {
         List<User> users = dao.getByPropertyEqual("name", "Austin");
         assertEquals(1, users.size());
+        assertEquals("Austin", users.get(0).getName());
         assertEquals(1, users.get(0).getId());
     }
 

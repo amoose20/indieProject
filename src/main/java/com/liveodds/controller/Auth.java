@@ -61,6 +61,8 @@ public class Auth extends HttpServlet implements PropertiesLoader {
 
     UserDao userDao = new UserDao();
 
+    User user = new User();
+
     private final Logger logger = LogManager.getLogger(this.getClass());
 
     @Override
@@ -92,6 +94,10 @@ public class Auth extends HttpServlet implements PropertiesLoader {
             try {
                 TokenResponse tokenResponse = getToken(authRequest);
                 userName = validate(tokenResponse);
+                List<User> matchingUsers = userDao.getByPropertyEqual("name", userName);
+                User user = matchingUsers.get(0);
+                session.setAttribute("userObject", user);
+
                 /*while (users.iterator().hasNext()) {
                     if (users.iterator().next().getName().equals(userName)) {
                         User userObject = (User) userDao.getByPropertyEqual("name", userName);
@@ -200,8 +206,6 @@ public class Auth extends HttpServlet implements PropertiesLoader {
 
     /*private User buildUser(String userName) {
 
-        UserDao userDao = new UserDao();
-        User user = new User();
         List<User> existingUsers = userDao.getAllUsers();
         ArrayList<String> userNameStrings = new ArrayList<>();
         while (existingUsers.iterator().hasNext()) {
