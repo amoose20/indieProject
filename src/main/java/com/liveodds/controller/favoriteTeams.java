@@ -42,6 +42,7 @@ public class favoriteTeams extends HttpServlet {
         String[] favoriteTeams = req.getParameterValues("teams");
 
         User user = (User) session.getAttribute("userObject");
+        logger.info("user object: " + user.getName());
         existingTeams = user.getTeams();
 
         for (String team : favoriteTeams) {
