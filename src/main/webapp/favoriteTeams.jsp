@@ -634,7 +634,7 @@
             <table>
                 <c:forEach var="team" items="${sessionScope.userObject.teams}">
                     <tr>
-                        <td><c:out value="${team.name}"/><button type="submit" name="delete" value="${team.id}">delete</button></td>
+                        <td><c:out value="${team.name}"/></td>
                     </tr>
                 </c:forEach>
             </table>
