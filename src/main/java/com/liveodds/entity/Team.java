@@ -32,6 +32,8 @@ public class Team {
 
     /**
      * Instantiates a new Team.
+     *
+     * @param name the name
      */
     public Team(String name) {
         this.name = name;
@@ -40,7 +42,7 @@ public class Team {
     /**
      * Instantiates a new Team.
      *
-     * @param name the name
+     * @param name  the name
      * @param users the user
      */
     public Team(String name, Set<User> users) {
@@ -71,7 +73,6 @@ public class Team {
      *
      * @return the user
      */
-
     public Set<User> getUser() {
         return this.users;
     }
@@ -79,7 +80,7 @@ public class Team {
     /**
      * Sets user.
      *
-     * @param users the user
+     * @param users the users
      */
     public void setUser(Set<User> users) {
         this.users = users;

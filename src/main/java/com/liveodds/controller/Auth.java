@@ -74,6 +74,10 @@ public class Auth extends HttpServlet implements PropertiesLoader {
 
     /**
      * Gets the auth code from the request and exchanges it for a token containing user info.
+     *
+     * Checks if a user already exists. If user exists, get its user object and place in the session as attribute.
+     * If the user does not exist, create a new user and insert into database. Also put user object in
+     * session as attribute.
      * @param req servlet request
      * @param resp servlet response
      * @throws ServletException

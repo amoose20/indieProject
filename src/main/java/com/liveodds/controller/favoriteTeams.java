@@ -19,6 +19,10 @@ import java.util.*;
 
 
 @WebServlet("/favoriteTeams")
+
+/**
+ * Servlet used to facilitate getting the user's selected favorite teams and adding it to the User's Object
+ */
 public class favoriteTeams extends HttpServlet {
 
     private final Logger logger = LogManager.getLogger(this.getClass());

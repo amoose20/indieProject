@@ -44,11 +44,13 @@ public class User {
     public User(String name) {
         this.name = name;
     }
+
     /**
      * Instantiates a new User.
      *
-     * @param name the username
-     * @param age       the age
+     * @param name  the username
+     * @param age   the age
+     * @param teams the teams
      */
     public User(String name, int age, Set<Team> teams) {
         this.name = name;
@@ -96,7 +98,6 @@ public class User {
      *
      * @return the teams
      */
-
     public Set<Team> getTeams() {
         return this.teams;
     }
@@ -110,11 +111,21 @@ public class User {
         this.teams = teams;
     }
 
+    /**
+     * Add teams.
+     *
+     * @param newTeam the new team
+     */
     public void addTeams(Team newTeam) {
         teams.add(newTeam);
         newTeam.setUser((Set<User>) this);
     }
 
+    /**
+     * Remove team.
+     *
+     * @param newTeam the new team
+     */
     public void removeTeam(Team newTeam) {
         teams.remove(newTeam);
         newTeam.setUser(null);

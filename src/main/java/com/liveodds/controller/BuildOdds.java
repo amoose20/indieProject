@@ -26,6 +26,11 @@ import java.util.Set;
         urlPatterns = {"/odds"}
 )
 
+/**
+ * This servlet generates the API requests and builds the Odds object for each request.
+ * Each odds object is placed in the request as an attribute.
+ * Number of user's favorite teams contained in the API response is generated, also put in request as attribute
+ */
 public class BuildOdds extends HttpServlet {
 
     ArrayList<String> allTeams = new ArrayList<>();
@@ -64,7 +69,6 @@ public class BuildOdds extends HttpServlet {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        //list of user's favorite teams
         teams = user.getTeams();
 
         for (int i = 0; i < teams.size(); i++) {
