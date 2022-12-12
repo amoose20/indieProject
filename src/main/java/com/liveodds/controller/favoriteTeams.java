@@ -47,6 +47,7 @@ public class favoriteTeams extends HttpServlet {
 
         User user = (User) session.getAttribute("userObject");
         logger.info("user object: " + user.getName());
+
         existingTeams = user.getTeams();
 
         for (String team : favoriteTeams) {
@@ -54,12 +55,13 @@ public class favoriteTeams extends HttpServlet {
                 Team newTeam  = teamDao.getByPropertyEqual("name", team).get(0);
                 newTeams.add(newTeam);
             }
-
         }
         user.setTeams(newTeams);
+
         userDao.saveOrUpdate(user);
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("/index.jsp");
+
         dispatcher.forward(req, resp);
     }
 

@@ -77,8 +77,8 @@ public class BuildOdds extends HttpServlet {
             }
         }
         logger.info("favoriteTeamCount: " + favoriteTeamCount);
-        req.setAttribute("favoriteTeamCount", favoriteTeamCount);
 
+        req.setAttribute("favoriteTeamCount", favoriteTeamCount);
         RequestDispatcher dispatcher = req.getRequestDispatcher("/odds.jsp");
         dispatcher.forward(req, resp);
     }
