@@ -3,6 +3,7 @@ package com.liveodds.persistence;
 import com.liveodds.restapi.BookmakersItem;
 import com.liveodds.restapi.MarketsItem;
 import com.liveodds.restapi.Odds;
+import com.liveodds.restapi.OutcomesItem;
 import com.liveodds.util.Database;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,26 +23,42 @@ public class OddsApiDaoTest {
     }
 
     @Test
-    void getHomeTeam() throws Exception {
+    void getOddsSuccess() throws Exception {
         Odds[] odds = oddsDao.build("basketball");
         String homeTeam = odds[1].getHomeTeam();
-        assertNotNull(odds);
-        assertEquals("a string", homeTeam);
+        String awayTeam = odds[1].getAwayTeam();
+        String sportsTitle = odds[1].getSportTitle();
+        List<BookmakersItem> bookmakers = odds[1].getBookmakers();
+
+        assertNotNull(homeTeam);
+        assertNotNull(awayTeam);
+        assertNotNull(sportsTitle);
+        assertNotNull(bookmakers);
     }
     @Test
-    void getBookMakers() throws Exception {
+    void getBookMakersSuccess() throws Exception {
         Odds[] odds = oddsDao.build("basketball");
         List bookMakers = odds[1].getBookmakers();
-        assertEquals("a string", bookMakers);
+        assertNotNull(bookMakers);
 
     }
 
     @Test
-    void getMarkets() throws Exception {
+    void getMarketsSuccess() throws Exception {
         Odds[] odds = oddsDao.build("basketball");
         List<BookmakersItem> bookMakers = odds[1].getBookmakers();
         List<MarketsItem> markets = bookMakers.get(1).getMarkets();
-        assertEquals("a string", markets);
+        assertNotNull(markets);
+
+    }
+
+    @Test
+    void getOutcomesSuccess() throws Exception {
+        Odds[] odds = oddsDao.build("basketball");
+        List<BookmakersItem> bookMakers = odds[1].getBookmakers();
+        List<MarketsItem> markets = bookMakers.get(1).getMarkets();
+        List<OutcomesItem> outcomes = markets.get(0).getOutcomes();
+        assertNotNull(outcomes);
 
     }
 

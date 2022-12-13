@@ -7,6 +7,8 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.liveodds.auth.*;
+import com.liveodds.entity.User;
+import com.liveodds.persistence.UserDao;
 import com.liveodds.util.PropertiesLoader;
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
@@ -18,6 +20,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.math.BigInteger;
@@ -34,16 +37,13 @@ import java.security.PublicKey;
 import java.security.interfaces.RSAPublicKey;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.RSAPublicKeySpec;
-import java.util.Base64;
-import java.util.HashMap;
-import java.util.Properties;
+import java.util.*;
 import java.util.stream.Collectors;
 
 
 @WebServlet(
         urlPatterns = {"/auth"}
 )
-// TODO if something goes wrong it this process, route to an error page. Currently, errors are only caught and logged.
 /**
  * Inspired by: https://stackoverflow.com/questions/52144721/how-to-get-access-token-using-client-credentials-using-java-code
  */
@@ -59,6 +59,10 @@ public class Auth extends HttpServlet implements PropertiesLoader {
     String POOL_ID;
     Keys jwks;
 
+    UserDao userDao = new UserDao();
+
+    User user = new User();
+
     private final Logger logger = LogManager.getLogger(this.getClass());
 
     @Override
@@ -70,6 +74,10 @@ public class Auth extends HttpServlet implements PropertiesLoader {
 
     /**
      * Gets the auth code from the request and exchanges it for a token containing user info.
+     *
+     * Checks if a user already exists. If user exists, get its user object and place in the session as attribute.
+     * If the user does not exist, create a new user and insert into database. Also put user object in
+     * session as attribute.
      * @param req servlet request
      * @param resp servlet response
      * @throws ServletException
@@ -79,21 +87,35 @@ public class Auth extends HttpServlet implements PropertiesLoader {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String authCode = req.getParameter("code");
         String userName = null;
+        HttpSession session = req.getSession();
+        List<User> users = userDao.getAllUsers();
+
 
         if (authCode == null) {
-            //TODO forward to an error page or back to the login
+            req.getRequestDispatcher("index.jsp").forward(req, resp);
         } else {
             HttpRequest authRequest = buildAuthRequest(authCode);
             try {
                 TokenResponse tokenResponse = getToken(authRequest);
                 userName = validate(tokenResponse);
+                List<User> matchingUsers = userDao.getByPropertyEqual("name", userName);
+                if (matchingUsers.isEmpty()) {
+                    User newUser = new User(userName);
+                    userDao.insert(newUser);
+                    session.setAttribute("userObject", newUser);
+                } else {
+                    User user = matchingUsers.get(0);
+                    session.setAttribute("userObject", user);
+                }
                 req.setAttribute("userName", userName);
+                session.setAttribute("userName", userName);
+                logger.info("userName: " + userName);
             } catch (IOException e) {
+                req.getRequestDispatcher("error.jsp").forward(req, resp);
                 logger.error("Error getting or validating the token: " + e.getMessage(), e);
-                //TODO forward to an error page
             } catch (InterruptedException e) {
+                req.getRequestDispatcher("error.jsp").forward(req, resp);
                 logger.error("Error getting token from Cognito oauth url " + e.getMessage(), e);
-                //TODO forward to an error page
             }
         }
         RequestDispatcher dispatcher = req.getRequestDispatcher("index.jsp");
@@ -146,7 +168,6 @@ public class Auth extends HttpServlet implements PropertiesLoader {
         BigInteger modulus = new BigInteger(1, org.apache.commons.codec.binary.Base64.decodeBase64(jwks.getKeys().get(0).getN()));
         BigInteger exponent = new BigInteger(1, org.apache.commons.codec.binary.Base64.decodeBase64(jwks.getKeys().get(0).getE()));
 
-        // TODO the following is "happy path", what if the exceptions are caught?
         // Create a public key
         PublicKey publicKey = null;
         try {
@@ -238,7 +259,6 @@ public class Auth extends HttpServlet implements PropertiesLoader {
      * Read in the cognito props file and get/set the client id, secret, and required urls
      * for authenticating a user.
      */
-    // TODO This code appears in a couple classes, consider using a startup servlet similar to adv java project
     private void loadProperties() {
         try {
             properties = loadProperties("/cognito.properties");

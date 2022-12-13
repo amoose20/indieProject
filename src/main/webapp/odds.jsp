@@ -16,44 +16,40 @@
 <body>
 
   <div class="container-fluid">
+    <h2>Hey! You have <c:out value="${favoriteTeamCount}"/> favorite teams with upcoming matches. Take a look!</h2>
     <h2>Upcoming NBA games</h2>
     <table class="table table-striped">
       <thead class="thead-light">
-      <th>Home Team</th>
-      <th>Away Team</th>
       <th>Start Time</th>
-      <th>Home Team MoneyLine</th>
-      <th>Away Team MoneyLine</th>
+      <th>Team 1 (price)</th>
+      <th>Team 2 (price)</th>
       </thead>
       <tbody>
       <c:forEach var="a" items="${nbaGameDetails}">
         <tr>
-          <td>${a.homeTeam}</td>
-          <td>${a.awayTeam}</td>
           <td>${a.commenceTime}</td>
-          <td>${a.bookmakers[0].markets[0].outcomes[0].price}</td>
-          <td>${a.bookmakers[0].markets[0].outcomes[1].price}</td>
-
+          <td>${a.bookmakers[0].markets[0].outcomes[0].name} (${a.bookmakers[0].markets[0].outcomes[0].price})</td>
+          <td>${a.bookmakers[0].markets[0].outcomes[1].name} (${a.bookmakers[0].markets[0].outcomes[1].price})</td>
         </tr>
       </c:forEach>
       </tbody>
     </table>
   </div>
 
-  <%--<div class="container-fluid">
+  <<div class="container-fluid">
     <h2>Upcoming NFL Games</h2>
     <table class="table table-striped">
       <thead class="thead-light">
-      <th>Home Team</th>
-      <th>Away Team</th>
       <th>Start Time</th>
+      <th>Team 1 (price)</th>
+      <th>Team 2 (price)</th>
       </thead>
       <tbody>
       <c:forEach var="a" items="${nflGameDetails}">
         <tr>
-          <td>${a.homeTeam}</td>
-          <td>${a.awayTeam}</td>
           <td>${a.commenceTime}</td>
+          <td>${a.bookmakers[0].markets[0].outcomes[0].name} (${a.bookmakers[0].markets[0].outcomes[0].price})</td>
+          <td>${a.bookmakers[0].markets[0].outcomes[1].name} (${a.bookmakers[0].markets[0].outcomes[1].price})</td>
         </tr>
       </c:forEach>
       </tbody>
@@ -64,21 +60,21 @@
     <h2>Upcoming NHL games</h2>
     <table class="table table-striped">
       <thead class="thead-light">
-      <th>Home Team</th>
-      <th>Away Team</th>
       <th>Start Time</th>
+      <th>Team 1 (price)</th>
+      <th>Team 2 (price)</th>
       </thead>
       <tbody>
       <c:forEach var="a" items="${nhlGameDetails}">
         <tr>
-          <td>${a.homeTeam}</td>
-          <td>${a.awayTeam}</td>
           <td>${a.commenceTime}</td>
+          <td>${a.bookmakers[0].markets[0].outcomes[0].name} (${a.bookmakers[0].markets[0].outcomes[0].price})</td>
+          <td>${a.bookmakers[0].markets[0].outcomes[1].name} (${a.bookmakers[0].markets[0].outcomes[1].price})</td>
         </tr>
       </c:forEach>
       </tbody>
     </table>
-  </div>--%>
+  </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 </body>

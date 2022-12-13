@@ -10,25 +10,23 @@ import java.util.Set;
 /**
  * The type User.
  */
-@Entity(name = "User")
-@Table(name = "user")
+@Entity
+@Table(name = "user", catalog = "live_odds")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
-    private int id;
+    private int userId;
 
-    @Column(name = "FirstName")
-    private String firstName;
+    @Column(name = "name")
+    private String name;
 
-    @Column(name = "LastName")
-    private String lastName;
-
-    @Column(name = "Age")
-    private int age;
-
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    private Set<Team> teams = new HashSet<>();
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "user_teams", catalog = "live_odds", joinColumns = {
+            @JoinColumn(name = "user_id", nullable = false, updatable = false) },
+            inverseJoinColumns = { @JoinColumn(name = "team_id",
+                    nullable = false, updatable = false) })
+    private Set<Team> teams = new HashSet<Team>(0);
 
 
     /**
@@ -37,17 +35,26 @@ public class User {
     public User() {
     }
 
+
     /**
      * Instantiates a new User.
      *
-     * @param firstName the first name
-     * @param lastName  the last name
-     * @param age       the age
+     * @param name the username
      */
-    public User(String firstName, String lastName, int age) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.age = age;
+    public User(String name) {
+        this.name = name;
+    }
+
+    /**
+     * Instantiates a new User.
+     *
+     * @param name  the username
+     * @param age   the age
+     * @param teams the teams
+     */
+    public User(String name, int age, Set<Team> teams) {
+        this.name = name;
+        this.teams = teams;
     }
 
     /**
@@ -56,70 +63,34 @@ public class User {
      * @return the id
      */
     public int getId() {
-        return id;
+        return userId;
     }
 
     /**
      * Sets id.
      *
-     * @param id the id
+     * @param userId the userId
      */
-    public void setId(int id) {
-        this.id = id;
+    public void setId(int userId) {
+        this.userId = userId;
     }
 
     /**
-     * Gets first name.
+     * Gets username.
      *
-     * @return the first name
+     * @return the username
      */
-    public String getFirstName() {
-        return firstName;
+    public String getName() {
+        return name;
     }
 
     /**
-     * Sets first name.
+     * Sets username.
      *
-     * @param firstName the first name
+     * @param name the username
      */
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    /**
-     * Gets last name.
-     *
-     * @return the last name
-     */
-    public String getLastName() {
-        return lastName;
-    }
-
-    /**
-     * Sets last name.
-     *
-     * @param lastName the last name
-     */
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    /**
-     * Gets age.
-     *
-     * @return the age
-     */
-    public int getAge() {
-        return age;
-    }
-
-    /**
-     * Sets age.
-     *
-     * @param age the age
-     */
-    public void setAge(int age) {
-        this.age = age;
+    public void setName(String name) {
+        this.name = name;
     }
 
     /**
@@ -128,7 +99,7 @@ public class User {
      * @return the teams
      */
     public Set<Team> getTeams() {
-        return teams;
+        return this.teams;
     }
 
     /**
@@ -140,7 +111,6 @@ public class User {
         this.teams = teams;
     }
 
-
     /**
      * Add teams.
      *
@@ -148,15 +118,15 @@ public class User {
      */
     public void addTeams(Team newTeam) {
         teams.add(newTeam);
-        newTeam.setUser(this);
+        newTeam.setUser((Set<User>) this);
     }
 
     /**
-     * Remove teams.
+     * Remove team.
      *
      * @param newTeam the new team
      */
-    public void removeTeams(Team newTeam) {
+    public void removeTeam(Team newTeam) {
         teams.remove(newTeam);
         newTeam.setUser(null);
     }
@@ -166,11 +136,11 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return id == user.id && age == user.age && Objects.equals(firstName, user.firstName) && Objects.equals(lastName, user.lastName);
+        return userId == user.userId == Objects.equals(name, user.name) && Objects.equals(teams, user.teams);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, lastName, age);
+        return Objects.hash(userId, name, teams);
     }
 }
